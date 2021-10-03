@@ -1,0 +1,430 @@
+﻿<Window x:Class="KIT506_A2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KIT506_A2.view"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="900" Width="800">
+    <Window.Resources>
+        <!--toggle button style template-->
+        <ImageBrush x:Key="app_mouse_over"
+                    ImageSource="icons/icons_mouse_over.png">
+        </ImageBrush>
+
+        <!--text font style-->
+        <!--<Style x:Key="font_style" TargetType="TextBlock">
+            <Setter Property="FontFamily"
+                    Value="font_style/Roboto-Regular.ttf #Roboto">
+            </Setter>
+            <Setter Property="VerticalAlignment"
+                    Value="Center">
+            </Setter>
+            <Setter Property="HorizontalAlignment"
+                    Value="Left">
+            </Setter>
+            <Setter Property="FontSize"
+                    Value="20">
+            </Setter>
+        </Style>-->
+
+
+        <!--tool tip style-->
+        <Style TargetType="ToolTip"
+               x:Key="tool_tip_style">
+            <Setter Property="Background"
+                    Value="Navy">
+            </Setter>
+            <Setter Property="Height"
+                    Value="35">
+            </Setter>
+            <Setter Property="Width"
+                    Value="150">
+            </Setter>
+            <Setter Property="Margin"
+                    Value="5,0,0,0">
+            </Setter>
+            <Setter Property="Placement"
+                    Value="Right">
+            </Setter>
+            <Setter Property="BorderBrush"
+                    Value="Transparent">
+            </Setter>
+            <Setter Property="Foreground"
+                    Value="White">
+            </Setter>
+            <Setter Property="FontFamily"
+                    Value="font_style/Roboto-Regular.ttf #Roboto">
+            </Setter>
+            <Setter Property="FontSize"
+                    Value="15">
+            </Setter>
+            <Setter Property="PlacementRectangle"
+                    Value="60,0,0,0">
+            </Setter>
+            <Setter Property="HorizontalOffset"
+                    Value="15">
+            </Setter>
+            <!--<Setter Property="VerticalOffset"
+                    Value="0">
+            </Setter>-->
+            <Setter Property="HasDropShadow"
+                    Value="True">
+            </Setter>
+            <Setter Property="HorizontalContentAlignment"
+                    Value="Center">
+            </Setter>
+        </Style>
+
+
+        <Style x:Key="app_style" TargetType="{x:Type ToggleButton}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Border x:Name="border"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}"
+                                SnapsToDevicePixels="True">
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+
+                                <Setter Property="Background"
+                                        TargetName="border"
+                                        Value="{StaticResource app_mouse_over}">
+                                </Setter>
+
+                                <Setter Property="BorderBrush"
+                                        TargetName="border"
+                                        Value="{StaticResource app_mouse_over}">
+                                </Setter>
+                            </Trigger>
+
+                            <Trigger Property="IsChecked" Value="True">
+
+                                <Setter Property="Background"
+                                        TargetName="border"
+                                        Value="{StaticResource app_mouse_over}">
+                                </Setter>
+
+                                <Setter Property="BorderBrush"
+                                        TargetName="border"
+                                        Value="{StaticResource app_mouse_over}">
+                                </Setter>
+                            </Trigger>
+
+
+
+
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+
+                </Setter.Value>
+
+            </Setter>
+
+        </Style>
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="54*"/>
+            <ColumnDefinition Width="130*"/>
+            <ColumnDefinition Width="270*"/>
+            <ColumnDefinition Width="200*"/>
+        </Grid.ColumnDefinitions>
+        <Grid x:Name="nav_side"
+                      HorizontalAlignment="Left"
+                      Width="65"
+                      Background="Navy"
+                      Grid.Column="0">
+            <StackPanel x:Name="stack_panel">
+
+                <!--toggle menu-->
+                <Grid Height="100">
+
+                    <!--menu title text-->
+                    <!--<TextBlock Grid.Row="1"
+                                       Grid.Column="0"
+                                       Margin="73,-20,0,0"
+                                       Text="M E N U"
+                                       Foreground="White"
+                                       FontSize="22"
+                                       Background="Transparent"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Center"
+                                   
+                                       >
+                            
+                            
+                                -->
+                    <!--shadow effect-->
+                    <!--
+                        <TextBlock.Effect>
+                            <DropShadowEffect BlurRadius="10"
+                                                      ShadowDepth="1"
+                                                      Direction="-90"
+                                                      Color="White">
+
+                            </DropShadowEffect>
+                        </TextBlock.Effect>
+                    </TextBlock>-->
+
+                    <!--toggle button-->
+                    <ToggleButton x:Name="toggle_btn"
+                                          Grid.Column="0"
+                                          VerticalAlignment="Center"
+                                          HorizontalAlignment="Left"
+                                          Margin="18,-20,0,0"
+                                          Height="30"
+                                          Width="30"
+                                          BorderThickness="0"
+                                          >
+                        <!--Style="{StaticResource tb_style}">-->
+
+                        <!--toggle button background color-->
+                        <ToggleButton.Background>
+                            <ImageBrush ImageSource="icons/icons_menu.png">
+                            </ImageBrush>
+                        </ToggleButton.Background>
+
+                        <!--toggle button - check and uncheck events-->
+                        <ToggleButton.Triggers>
+                            <!--uncheck-->
+                            <EventTrigger RoutedEvent="ToggleButton.Unchecked">
+
+                                <BeginStoryboard>
+                                    <Storyboard x:Name="hide_nav_side">
+
+                                        <DoubleAnimation
+                                                    Storyboard.TargetName="nav_pnl"
+                                                    Storyboard.TargetProperty="width"
+                                                    BeginTime="0:0:0"
+                                                    From="230" To=" 65"
+                                                    Duration="0:0:0.2">
+
+                                        </DoubleAnimation>
+
+                                    </Storyboard>
+
+                                </BeginStoryboard>
+
+                            </EventTrigger>
+
+                            <!--check-->
+                            <EventTrigger RoutedEvent="ToggleButton.Checked">
+                                <BeginStoryboard>
+                                    <Storyboard x:Name="show_nav_side">
+                                        <DoubleAnimation 
+                                                    Storyboard.TargetName="nav_pnl"
+                                                    Storyboard.TargetProperty="width"
+                                                    BeginTime="0:0:0"
+                                                    From="65" To=" 230"
+                                                    Duration="0:0:0.3">
+
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+
+                        </ToggleButton.Triggers>
+
+
+                    </ToggleButton>
+
+                </Grid>
+
+
+                <!--list view with menu-->
+                <ListView x:Name="side_bar_view"
+                                  Background="Transparent"
+                                  BorderBrush="Transparent"
+                                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+
+                    <!--home-->
+
+                    <ListViewItem HorizontalAlignment="Center"
+                                        Margin="0,0,0,15">
+                        <Button Background="Navy"
+                                        BorderThickness="0"
+                                    
+                                            >
+                            <StackPanel Orientation="Horizontal"
+                                            Width="230">
+
+
+                                <Image Source="icons/icons-home.png"
+                                            Stretch="None"
+                                            Margin="10,0,0,0">
+                                </Image>
+
+                                <TextBlock Text="Home"
+                                            Margin="25,0,0,0"
+                                            >
+                                </TextBlock>
+
+                            </StackPanel>
+                        </Button>
+                        <ListViewItem.ToolTip>
+                            <ToolTip x:Name="tool_tip_home"
+                                            Content="Home"
+                                            Style="{StaticResource tool_tip_style}"
+                                            >
+                            </ToolTip>
+                        </ListViewItem.ToolTip>
+                    </ListViewItem>
+
+
+                    <!--researcher list-->
+                    <ListViewItem HorizontalAlignment="Center"
+                                          Margin="0,0,0,15">
+
+                        <Button Background="Navy"
+                                        BorderThickness="0"
+                              
+                                        >
+                            <StackPanel Orientation="Horizontal"
+                                            Width="230">
+                                <Image Source="icons/icons-researcher-list.png"
+                                           Stretch="None"
+                                           Margin="10,0,0,0">
+                                </Image>
+                                <TextBlock Text="Researcher List"
+                                           Margin="25,0,0,0"
+                                           >
+                                </TextBlock>
+                            </StackPanel>
+                        </Button>
+
+
+                        <ListViewItem.ToolTip>
+                            <ToolTip x:Name="tool_tip_researcher_list"
+                                             Content="Researcher List"
+                                             Style="{StaticResource tool_tip_style}"
+                                             >
+                            </ToolTip>
+                        </ListViewItem.ToolTip>
+                    </ListViewItem>
+
+                    <!--researcher detail-->
+                    <ListViewItem HorizontalAlignment="Center"
+                                          Margin="0,0,0,15">
+                        <Button Background="Navy"
+                                        BorderThickness="0"
+                                        >
+                            <StackPanel Orientation="Horizontal"
+                                                Width="230">
+                                <Image Source="icons/icons-researcher-detail.png"
+                                               Stretch="None"
+                                               Margin="10,0,0,0">
+                                </Image>
+                                <TextBlock Text="Researcher Detail"
+                                               Margin="25,0,0,0"
+                                               >
+                                </TextBlock>
+                            </StackPanel>
+                        </Button>
+                        <ListViewItem.ToolTip>
+                            <ToolTip x:Name="tool_tip_researcher_detail"
+                                             Content="Researcher Detail"
+                                             Style="{StaticResource tool_tip_style}"
+                                             >
+                            </ToolTip>
+                        </ListViewItem.ToolTip>
+                    </ListViewItem>
+
+                    <!--publication-->
+                    <ListViewItem HorizontalAlignment="Center"
+                                          Margin="0,0,0,15">
+                        <Button Background="Navy"
+                                        BorderThickness="0"
+                                        >
+                            <StackPanel Orientation="Horizontal"
+                                                Width="230">
+                                <Image Source="icons/icons-publication.png"
+                                               Stretch="None"
+                                               Margin="10,0,0,0">
+                                </Image>
+                                <TextBlock Text="Publication"
+                                               Margin="25,0,0,0"
+                                               >
+                                </TextBlock>
+                            </StackPanel>
+                        </Button>
+                        <ListViewItem.ToolTip>
+                            <ToolTip x:Name="tool_tip_publication"
+                                             Content="Publication"
+                                             Style="{StaticResource tool_tip_style}"
+                                             >
+                            </ToolTip>
+                        </ListViewItem.ToolTip>
+                    </ListViewItem>
+
+                    <!--report-->
+                    <ListViewItem HorizontalAlignment="Center"
+                                          Margin="0,0,0,15">
+                        <Button Background="Navy"
+                                        BorderThickness="0"
+                                        >
+                            <StackPanel Orientation="Horizontal"
+                                                Width="230">
+                                <Image Source="icons/icons-report.png"
+                                               Stretch="None"
+                                               Margin="10,0,0,0">
+                                </Image>
+                                <TextBlock Text="Report"
+                                               Margin="25,0,0,0"
+                                               >
+                                </TextBlock>
+                            </StackPanel>
+                        </Button>
+                        <ListViewItem.ToolTip>
+                            <ToolTip x:Name="tool_tip_report"
+                                             Content="Report"
+                                             Style="{StaticResource tool_tip_style}"
+                                             >
+                            </ToolTip>
+                        </ListViewItem.ToolTip>
+                    </ListViewItem>
+                    <!--setting-->
+                    <ListViewItem HorizontalAlignment="Center"
+                                          Margin="0,0,0,15">
+                        <Button Background="Navy"
+                                        BorderThickness="0">
+                            <StackPanel Orientation="Horizontal"
+                                                Width="230">
+                                <Image Source="icons/icons-setting.png"
+                                               Stretch="None"
+                                               Margin="10,0,0,0">
+                                </Image>
+                                <TextBlock Text="Setting"
+                                               Margin="25,0,0,0"
+                                               >
+                                </TextBlock>
+                            </StackPanel>
+                        </Button>
+                        <ListViewItem.ToolTip>
+                            <ToolTip x:Name="tool_tip_setting"
+                                             Content="Setting"
+                                             Style="{StaticResource tool_tip_style}"
+                                             >
+                            </ToolTip>
+                        </ListViewItem.ToolTip>
+                    </ListViewItem>
+                </ListView>
+            </StackPanel>
+        </Grid>
+
+
+        <local:ResearcherListView Grid.Column="1"/>
+
+
+        <local:ResearcherDetailView Grid.Column="2"/>
+
+
+        <local:PublicationDetailView Grid.Column="3"/>
+
+    </Grid>
+</Window>
